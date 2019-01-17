@@ -1,0 +1,13 @@
+.title{
+    font-size: 35px;
+    color: #67C23A;
+    margin-bottom: 20px;
+}
+.el-input{
+    margin-bottom: 20px;
+}
+.header{
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #67C23A;
+}
