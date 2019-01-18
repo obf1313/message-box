@@ -1,12 +1,12 @@
 <template>
     <Row>
-        <Row class="title">{{question.title}}</Row>
+        <Row class="title">向{{person.name}}提问：</Row>
         <Row style="margin-bottom: 10px">
-            <Input type="textarea" :rows="8" placeholder="请输入回答内容" v-model="answerContent" style="font-size: 14px;"/>
+            <Input type="textarea" :rows="8" placeholder="请输入提问内容" v-model="questionContent" style="font-size: 14px;"/>
         </Row>
         <Row type="flex" justify="end" style="margin-bottom: 40px">
             <Button size="small">重置</Button>
-            <Button type="success" size="small">回答</Button>
+            <Button type="success" size="small">提问</Button>
         </Row>
     </Row>
 </template>
@@ -14,18 +14,18 @@
 <script>
     import { Row, Input, Button } from 'element-ui'
     export default {
-        name: "AnswerQuestion",
+        name: "PersonQuestion",
         components: { Row, Input, Button },
-        props: { question: Object },
+        props: { person: Object },
         data() {
             return {
-                answerContent: ''
+                questionContent: ''
             }
         }
     }
 </script>
 
-<style lang="less" scoped>
+<style scoped>
     .title{
         font-size: 25px;
         color: #67C23A;

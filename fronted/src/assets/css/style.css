@@ -1,0 +1,23 @@
+.contain{
+    padding: 50px 100px;
+}
+.title{
+    font-size: 25px;
+    color: #67C23A;
+    text-align: left;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #67C23A;
+    margin-bottom: 20px;
+}
+.question-content{
+    margin-bottom: 10px;
+}
+.question-time{
+    font-size: 12px;
+    color: #666;
+    margin-right: 20px;
+}
+.question-title{
+    font-size: 18px;
+    color: #67C23A;
+}

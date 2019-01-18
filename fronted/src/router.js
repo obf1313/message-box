@@ -4,6 +4,7 @@ import Home from './views/Home'
 import Login from './views/Login'
 import Register from './views/Register'
 import Answer from './views/Answer'
+import Question from './views/Question'
 
 Vue.use(Router)
 
@@ -21,6 +22,10 @@ export default new Router({
                 path: 'Answer/:id',
                 name: 'Answer',
                 component: Answer
+            },{
+                path: 'Question/:userId',
+                name: 'Question',
+                component: Question
             }]
         },
         {

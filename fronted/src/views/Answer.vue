@@ -31,7 +31,8 @@
                 'list|10':[{
                     'id|+1':1,
                     "title|+1": ["今天吃饭了吗？","作业做完了吗？"],
-                    "time|+1":[Mock.mock('@datetime'),Mock.mock('@datetime'),Mock.mock('@datetime')]
+                    "time|+1":[Mock.mock('@datetime'),Mock.mock('@datetime'),Mock.mock('@datetime')],
+                    "answer|+1": ["吃了","做完了",""]
                 }]
             });
             this.questionData = questionData.list;
@@ -60,27 +61,5 @@
 </script>
 
 <style lang="less" scoped>
-    .contain{
-        padding: 50px 100px;
-    }
-    .title{
-        font-size: 35px;
-        color: #67C23A;
-        text-align: left;
-        padding-bottom: 5px;
-        border-bottom: 2px solid #67C23A;
-        margin-bottom: 20px;
-    }
-    .question-content{
-        margin-bottom: 10px;
-    }
-    .question-time{
-        font-size: 12px;
-        color: #666;
-        margin-right: 15px;
-    }
-    .question-title{
-        font-size: 18px;
-        color: #67C23A;
-    }
+    @import "../assets/css/style.css";
 </style>
