@@ -2,7 +2,7 @@
     <Row>
         <Row class="header" type="flex" justify="space-between" align="middle">
             <Row style="color: #fff">
-                Message-Box
+                Message - Box
             </Row>
             <Row type="flex" justify="end">
                 <router-link :to="{ name: 'Login'}"><Button type="text" style="color: #fff; margin-right: 20px">登录</Button></router-link>

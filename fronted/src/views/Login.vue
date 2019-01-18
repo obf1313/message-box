@@ -5,7 +5,7 @@
         </Row>
         <Row type="flex" justify="center" style="margin-top: 200px;">
             <Row style="width: 300px;">
-                <Row class="title">登录</Row>
+                <Row class="login_title">登录</Row>
                 <Input placeholder="请输入用户名" v-model="userName" clearable />
                 <Input placeholder="请输入密码" v-model="passWord" clearable />
                 <Button type="success" style="width: 100%">登陆</Button>
