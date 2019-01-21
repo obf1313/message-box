@@ -1,16 +1,16 @@
 import axios from 'axios'
 
 let Ajax = {
-    post: function (url, data={}) {
-        return axios.post('http://127.0.0.1:8000/messageBox'+url, JSON.stringify(data)).then(function(response) {
-            window.console.log(response)
+    post: (url, data)=> {
+        return axios({ method: 'post', url, data, baseURL: '/api'}).then(function(response) {
+            return response.data
         }).catch((error)=>{
             window.console.log(error)
         })
     },
-    get: function (url, data={}) {
-        return axios.get('http://127.0.0.1:8000/messageBox'+url, data).then(function(response) {
-            window.console.log(response)
+    get: (url, data)=> {
+        return axios.get('http://127.0.0.1:8000'+url, data).then(function(response) {
+            return response.data
         }).catch((error)=>{
             window.console.log(error)
         })

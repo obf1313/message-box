@@ -34,11 +34,11 @@
         },
         methods: {
             register: function() {
-                let params = {
+                let data = {
                     username: this.userName,
                     password: this.passWord
                 };
-                Ajax.post('/user/register/',params).then((response)=>{
+                Ajax.post('/messageBox/user/register/', data).then((response)=>{
                     window.console.log(response);
                 });
             }
