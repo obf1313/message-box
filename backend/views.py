@@ -16,6 +16,7 @@ class CJsonEncoder(json.JSONEncoder):
         else:
             return json.JSONEncoder.default(self, obj)
 
+
 @csrf_exempt
 def register(request):
     register_user = json.loads(request.body)
@@ -55,9 +56,21 @@ def get_user_info(request):
 @csrf_exempt
 def get_question_list(request):
     be_asked_user = json.loads(request.body)
+    """
+    :type
+        0: 全部
+        1: 待回答
+        2: 已回答
+    """
+    type = be_asked_user['type']
     user_id = be_asked_user['user_id']
     user = get_object_or_404(User, pk=user_id)
-    question_list = list(user.question_set.all().order_by('-pub_date').values())
+    if type == 0:
+        question_list = list(user.question_set.all().order_by('-pub_date').values())
+    elif type == 1:
+        question_list = list(user.question_set.filter(answer_text__isnull=True).order_by('-pub_date').values())
+    elif type == 2:
+        question_list = list(user.question_set.filter(answer_text__isnull=False).order_by('-pub_date').values())
     data = {'flag': 0, 'questionList': question_list}
     return HttpResponse(json.dumps(data, cls=CJsonEncoder), content_type='application/json')
 

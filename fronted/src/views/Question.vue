@@ -5,7 +5,7 @@
         <Card v-for="item in questionList" :key="item.id" class="question-content" shadow="hover">
             <Row type="flex" justify="space-between" align="middle">
                 <Row><span class="question-time">{{item.pub_date}}</span><span class="question-title">{{ item.question_text }}</span></Row>
-                <Button type="success" size="small" :disabled="item.answer===''" >{{item.answer===''?'暂无回答':'查看回答'}}</Button>
+                <Button type="success" size="small" :disabled="item.answer===null" >{{item.answer===null?'暂无回答':'查看回答'}}</Button>
             </Row>
         </Card>
     </Row>
@@ -53,7 +53,10 @@
                 })
             },
             getQuestionList: function (id) {
-                let data = {user_id : id}
+                let data = {
+                    user_id : id,
+                    type: 0
+                }
                 Ajax.post('/messageBox/question/getQuestionList/', data).then((data)=>{
                     if(data.flag==0) {
                         this.questionList = data.questionList;

@@ -62,7 +62,10 @@
                 this.$router.push({ name: 'Answer', params: { id: id }});
             },
             getQuestionList: function (userId, questionId) {
-                let data = {user_id : userId}
+                let data = {
+                    user_id : userId,
+                    type: 1
+                }
                 Ajax.post('/messageBox/question/getQuestionList/', data).then((data)=>{
                     if(data.flag==0) {
                         this.questionList = data.questionList;

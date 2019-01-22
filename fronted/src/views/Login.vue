@@ -46,7 +46,7 @@
                         });
                         sessionStorage.setItem('username',data.user.username);
                         sessionStorage.setItem('userid',data.user.id);
-                        this.$router.push({ name: 'Answer', params: {}});
+                        this.$router.push({ name: 'Answer', params: {id: 1}});
                     } else {
                         Message.error(data.msg);
                     }
