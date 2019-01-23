@@ -57,20 +57,28 @@ def get_user_info(request):
 def get_question_list(request):
     be_asked_user = json.loads(request.body)
     """
-    :type
+    :search_type
         0: 全部
         1: 待回答
         2: 已回答
+        3: 搜索关键词
     """
-    type = be_asked_user['type']
+    search_type = be_asked_user['search_type']
     user_id = be_asked_user['user_id']
+    """
+    寻常用法： user = User.objects.get(pk=user_id)
+     DoesNotExist exception ||  MultipleObjectsReturned
+    """
     user = get_object_or_404(User, pk=user_id)
-    if type == 0:
+    if search_type == 0:
         question_list = list(user.question_set.all().order_by('-pub_date').values())
-    elif type == 1:
+    elif search_type == 1:
         question_list = list(user.question_set.filter(answer_text__isnull=True).order_by('-pub_date').values())
-    elif type == 2:
+    elif search_type == 2:
         question_list = list(user.question_set.filter(answer_text__isnull=False).order_by('-pub_date').values())
+    elif search_type == 3:
+        search_keyword = be_asked_user['keyword']
+        question_list = list(user.question_set.filter(question_text__contains=search_keyword).order_by('-pub_date').values())
     data = {'flag': 0, 'questionList': question_list}
     return HttpResponse(json.dumps(data, cls=CJsonEncoder), content_type='application/json')
 

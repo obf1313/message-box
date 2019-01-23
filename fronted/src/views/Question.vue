@@ -55,7 +55,7 @@
             getQuestionList: function (id) {
                 let data = {
                     user_id : id,
-                    type: 0
+                    search_type: 0
                 }
                 Ajax.post('/messageBox/question/getQuestionList/', data).then((data)=>{
                     if(data.flag==0) {

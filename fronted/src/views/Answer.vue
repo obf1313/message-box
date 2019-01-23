@@ -2,6 +2,9 @@
     <Row class="contain">
         <AnswerQuestion :question="question"/>
         <Row class="title">待回答问题</Row>
+        <Row type="flex">
+            <Input placeholder="请输入问题..."  prefix-icon="el-icon-search" v-model="keyword" style="width: 250px; margin-right: 10px;" @keyup.native.enter="searchQuestion" />
+        </Row>
         <Card v-for="item in questionList" :key="item.id" class="question-content" shadow="hover">
             <Row type="flex" justify="space-between" align="middle">
                 <Row><span class="question-time">{{item.pub_date}}</span><span class="question-title">{{ item.question_text }}</span></Row>
@@ -13,17 +16,19 @@
 
 <script>
     import Ajax from '../utils/ajax'
-    import { Row, Card, Button } from 'element-ui';
+    import { Row, Card, Button, Input } from 'element-ui';
     import AnswerQuestion from '../components/AnswerQuestion'
     export default {
         name: "Answer",
-        components: { Row, Card, Button, AnswerQuestion },
+        components: { Row, Card, Button, AnswerQuestion, Input },
         data() {
             return {
-                id: '',
+                questionId: '',
+                userId: '',
                 question: {},
                 answerContent: '',
-                questionList: []
+                questionList: [],
+                keyword: ''
             }
         },
         created: function () {
@@ -42,32 +47,51 @@
             //         this.question = questionData.list[i];
             // }
 
-            let questionId = parseInt(this.$route.params.id);
+            let questionId = parseInt(this.$route.params.questionId);
+            this.questionId = parseInt(this.$route.params.questionId);
+            this.userId = sessionStorage.getItem('userid');
             let userId = sessionStorage.getItem('userid');
             // 获取问题列表
             this.getQuestionList(userId, questionId);
         },
         watch: {
             $route(){
-                let id = parseInt(this.$route.params.id);
-                this.id = id;
+                let questionId = parseInt(this.$route.params.questionId);
+                this.questionId = questionId;
                 for(let i=0; i<this.questionList.length; i++) {
-                    if(this.questionList[i].id === id)
+                    if(this.questionList[i].id === questionId)
                         this.question = this.questionList[i];
                 }
             }
         },
         methods: {
-            toAnswer: function(id) {
-                this.$router.push({ name: 'Answer', params: { id: id }});
+            toAnswer: function(questionId) {
+                this.$router.push({ name: 'Answer', params: { questionId: questionId }});
             },
             getQuestionList: function (userId, questionId) {
                 let data = {
                     user_id : userId,
-                    type: 1
-                }
+                    search_type: 1
+                };
                 Ajax.post('/messageBox/question/getQuestionList/', data).then((data)=>{
-                    if(data.flag==0) {
+                    if(data.flag == 0) {
+                        this.questionList = data.questionList;
+                        for(let i=0; i<data.questionList.length; i++) {
+                            if(data.questionList[i].id === questionId)
+                                this.question = data.questionList[i];
+                        }
+                    }
+                })
+            },
+            searchQuestion:function () {
+                let questionId = this.questionId;
+                let data = {
+                    user_id : this.userId,
+                    keyword: this.keyword,
+                    search_type: 3
+                };
+                Ajax.post('/messageBox/question/getQuestionList/', data).then((data)=>{
+                    if(data.flag == 0) {
                         this.questionList = data.questionList;
                         for(let i=0; i<data.questionList.length; i++) {
                             if(data.questionList[i].id === questionId)
