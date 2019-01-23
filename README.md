@@ -13,5 +13,8 @@ cd ..
 ```
 python manage.py makemigrations
 python manage.py migrate
+```
+运行后台服务
+````
 python manage.py runserver
 ```
