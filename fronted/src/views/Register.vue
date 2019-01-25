@@ -39,7 +39,11 @@
                     password: this.passWord
                 };
                 Ajax.post('/messageBox/user/register/', data).then((response)=>{
-                    window.console.log(response);
+                    if(response.flag==0) {
+                        sessionStorage.setItem('username',this.userName);
+                        sessionStorage.setItem('userid',response.id);
+                        this.$router.push({ name: 'Answer', params: {id: response.id}});
+                    }
                 });
             }
         }

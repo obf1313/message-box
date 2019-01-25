@@ -1,8 +1,7 @@
 from django.shortcuts import get_object_or_404, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 # from django.core import serializers
-import json
-import datetime
+import datetime, uuid, json
 from .models import User, Question
 # Create your views here.
 
@@ -13,6 +12,8 @@ class CJsonEncoder(json.JSONEncoder):
             return obj.strftime('%Y-%m-%d %H:%M:%S')
         elif isinstance(obj, datetime.date):
             return obj.strftime("%Y-%m-%d")
+        elif isinstance(obj, uuid.UUID):
+            return str(obj)
         else:
             return json.JSONEncoder.default(self, obj)
 
@@ -71,6 +72,10 @@ def get_question_list(request):
     """
     user = get_object_or_404(User, pk=user_id)
     if search_type == 0:
+        """
+        user.question_set 可以通过user访问question相关条目对象的列表
+        .values('id', 'question_text') 只返回 id 和 question_text 字段
+        """
         question_list = list(user.question_set.all().order_by('-pub_date').values())
     elif search_type == 1:
         question_list = list(user.question_set.filter(answer_text__isnull=True).order_by('-pub_date').values())
