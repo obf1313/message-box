@@ -13,7 +13,7 @@ class CJsonEncoder(json.JSONEncoder):
         elif isinstance(obj, datetime.date):
             return obj.strftime("%Y-%m-%d")
         elif isinstance(obj, uuid.UUID):
-            return str(obj)
+            return ''.join(str(obj).split('-'))
         else:
             return json.JSONEncoder.default(self, obj)
 
