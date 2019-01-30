@@ -4,6 +4,7 @@
 ```
 cd front
 npm install
+npm run serve
 ```
 ## backend django
 ```
