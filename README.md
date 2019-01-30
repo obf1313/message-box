@@ -4,6 +4,7 @@
 ```
 cd front
 npm install
+npm run serve
 ```
 ## backend django
 ```
@@ -17,4 +18,3 @@ python manage.py migrate
 运行后台服务
 ````
 python manage.py runserver
-```
