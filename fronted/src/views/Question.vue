@@ -2,12 +2,25 @@
     <Row class="contain">
         <PersonQuestion :person="person" @addQuestion="addQuestion" />
         <Row class="title">{{person.username}} 收到的问题：</Row>
-        <Card v-for="item in questionList" :key="item.id" class="question-content" shadow="hover">
-            <Row type="flex" justify="space-between" align="middle">
-                <Row><span class="question-time">{{item.pub_date}}</span><span class="question-title">{{ item.question_text }}</span></Row>
-                <Button type="success" size="small" :disabled="item.answer===null" >{{item.answer===null?'暂无回答':'查看回答'}}</Button>
-            </Row>
-        </Card>
+        <Row style="position: relative;">
+            <Card v-for="(item,index) in questionList" :key="item.id" class="question-content" shadow="hover" :style="{ marginLeft: ifSee && seeIndex === index ? leftWidth+'px' : '0px' }">
+                <Row type="flex" justify="space-between" align="middle">
+                    <Row>
+                        <span class="question-time">{{item.pub_date}}</span>
+                        <span class="question-title">{{ item.question_text }}</span>
+                    </Row>
+                    <Button type="success"
+                            size="small"
+                            :disabled="item.answer_text===null"
+                            @click.native="item.answer_text===null?'':seeAnswer(item.answer_text,index)">
+                        {{item.answer_text===null?'暂无回答':'查看回答'}}
+                    </Button>
+                </Row>
+            </Card>
+            <Card v-for="(item,index) in questionList" :key="index" class="question-content-hidden" shadow="hover" :style="{top: index*84+'px', width: ifSee && seeIndex === index ? leftWidth-20+'px' : '0px'}">
+                <Row type="flex" justify="center" align="middle" class="question-title" style="height: 32px">{{ item.answer_text===null? '':item.answer_text }}</Row>
+            </Card>
+        </Row>
     </Row>
 </template>
 
@@ -21,7 +34,10 @@
         data() {
             return {
                 person: {},
-                questionList: []
+                questionList: [],
+                ifSee: false,
+                seeIndex: 0,
+                leftWidth: 400
             }
         },
         created: function () {
@@ -65,6 +81,10 @@
             },
             addQuestion: function (question) {
                 this.questionList.unshift(question)
+            },
+            seeAnswer: function (answer_text,index) {
+                this.seeIndex = index
+                this.ifSee = true
             }
         }
     }
@@ -72,4 +92,10 @@
 
 <style scoped>
     @import "../assets/css/style.css";
+    .question-content-hidden {
+        position: absolute;
+        left: 0;
+        z-index: -99;
+        border-left: 10px solid #67C23A;
+    }
 </style>

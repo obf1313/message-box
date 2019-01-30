@@ -2,7 +2,7 @@
     <Row>
         <Row class="title">{{question.question_text}}</Row>
         <Row style="margin-bottom: 10px">
-            <Input type="textarea" :rows="8" placeholder="请输入回答内容" v-model="answerContent" style="font-size: 14px;"/>
+            <Input type="textarea" :rows="8" placeholder="请输入回答内容" v-model="answerContent" @keyup.ctrl.enter.native="answerQuestion" style="font-size: 14px;"/>
         </Row>
         <Row type="flex" justify="end" style="margin-bottom: 40px">
             <Button size="small" @click.native="reset">重置</Button>
