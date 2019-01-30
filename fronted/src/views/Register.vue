@@ -42,7 +42,7 @@
                     if(response.flag==0) {
                         sessionStorage.setItem('username',this.userName);
                         sessionStorage.setItem('userid',response.id);
-                        this.$router.push({ name: 'Answer', params: {id: response.id}});
+                        this.$router.push({ name: 'QuestionList'});
                     }
                 });
             }

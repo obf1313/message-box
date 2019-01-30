@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-# from django.core import serializers
-import datetime, uuid, json
+import datetime
+import uuid
+import json
 from .models import User, Question
 # Create your views here.
 

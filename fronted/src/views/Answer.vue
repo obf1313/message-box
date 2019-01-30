@@ -26,7 +26,6 @@
                 questionId: '',
                 userId: '',
                 question: {},
-                answerContent: '',
                 questionList: [],
                 keyword: ''
             }
@@ -47,16 +46,14 @@
             //         this.question = questionData.list[i];
             // }
 
-            let questionId = parseInt(this.$route.params.questionId);
-            this.questionId = parseInt(this.$route.params.questionId);
+            this.questionId = this.$route.params.questionId;
             this.userId = sessionStorage.getItem('userid');
-            let userId = sessionStorage.getItem('userid');
             // 获取问题列表
-            this.getQuestionList(userId, questionId);
+            this.getQuestionList(this.userId, this.questionId);
         },
         watch: {
             $route(){
-                let questionId = parseInt(this.$route.params.questionId);
+                let questionId = this.$route.params.questionId;
                 this.questionId = questionId;
                 for(let i=0; i<this.questionList.length; i++) {
                     if(this.questionList[i].id === questionId)

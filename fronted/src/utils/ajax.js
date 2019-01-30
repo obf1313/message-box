@@ -1,18 +1,35 @@
 import axios from 'axios'
+import { Message } from 'element-ui'
 
 let Ajax = {
     post: (url, data)=> {
         return axios({ method: 'post', url, data, baseURL: '/api'}).then(function(response) {
             return response.data
         }).catch((error)=>{
-            window.console.log(error)
+            if(error.response) {
+                if(error.response.status === '404'){
+                    Message.error('服务未找到！');
+                }else if(error.response.status === '500'){
+                    Message.error('服务器异常！');
+                }else{
+                    Message.error('未知异常！');
+                }
+            }
         })
     },
     get: (url, data)=> {
-        return axios.get('http://127.0.0.1:8000'+url, data).then(function(response) {
+        return axios({ method: 'get', url, data, baseURL: '/api'}).then(function(response) {
             return response.data
         }).catch((error)=>{
-            window.console.log(error)
+            if(error.response) {
+                if(error.response.status === '404'){
+                    Message.error('服务未找到！');
+                }else if(error.response.status === '500'){
+                    Message.error('服务器异常！');
+                }else{
+                    Message.error('未知异常！');
+                }
+            }
         })
     }
 }

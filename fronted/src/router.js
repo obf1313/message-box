@@ -5,6 +5,7 @@ import Login from './views/Login'
 import Register from './views/Register'
 import Answer from './views/Answer'
 import Question from './views/Question'
+import QuestionList from './views/QuestionList'
 
 Vue.use(Router)
 
@@ -27,6 +28,10 @@ export default new Router({
                 path: 'Question/:userId',
                 name: 'Question',
                 component: Question
+            },{
+                path: 'QuestionList',
+                name: 'QuestionList',
+                component: QuestionList
             }]
         },
         {
