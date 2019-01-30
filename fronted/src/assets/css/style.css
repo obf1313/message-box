@@ -11,6 +11,7 @@
 }
 .question-content{
     margin-bottom: 10px;
+    border-left: 10px solid #67C23A;
 }
 .question-time{
     font-size: 12px;

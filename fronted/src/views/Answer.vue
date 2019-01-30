@@ -1,7 +1,7 @@
 <template>
     <Row class="contain">
         <AnswerQuestion :question="question"/>
-        <Row class="title">待回答问题</Row>
+        <Row class="title">全部问题</Row>
         <Row type="flex">
             <Input placeholder="请输入问题..."  prefix-icon="el-icon-search" v-model="keyword" style="width: 250px; margin-right: 10px;" @keyup.native.enter="searchQuestion" />
         </Row>

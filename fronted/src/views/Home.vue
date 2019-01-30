@@ -5,7 +5,13 @@
                 Message - Box
             </Row>
             <Row type="flex" justify="end" v-if="ifLogin">
-                <Button type="text" style="color: #fff; margin-right: 20px">{{ username }}</Button>
+                <Dropdown trigger="click" style="display: flex; align-items: center; margin-right: 20px; cursor: pointer;">
+                    <span style="color: #fff">{{ username }}<i class="el-icon-arrow-down el-icon--right"></i></span>
+                    <DropdownMenu slot="dropdown">
+                        <DropdownItem @click.native="toAllQuestion">全部问题</DropdownItem>
+                        <DropdownItem>个人信息</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
                 <Button type="text" style="color: #fff" @click.native="exitLogin">退出登录</Button>
             </Row>
             <Row type="flex" justify="end" v-else>
@@ -20,12 +26,15 @@
 </template>
 
 <script>
-    import { Row, Button } from 'element-ui';
+    import { Row, Button, Dropdown, DropdownMenu, DropdownItem } from 'element-ui';
     export default {
         name: 'Home',
         components: {
             Row,
-            Button
+            Button,
+            Dropdown,
+            DropdownMenu,
+            DropdownItem
         },
         data() {
           return {
@@ -44,6 +53,9 @@
             exitLogin: function() {
                 sessionStorage.clear();
                 this.$router.push({ name: 'Login', params: {}});
+            },
+            toAllQuestion: function () {
+                this.$router.push({ name: 'QuestionList'});
             }
         }
     }
