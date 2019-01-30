@@ -9,9 +9,9 @@ let Ajax = {
             if(error.response) {
                 if(error.response.status === '404'){
                     Message.error('服务未找到！');
-                }else if(error.response.status === '500'){
+                } else if (error.response.status === '500'){
                     Message.error('服务器异常！');
-                }else{
+                } else {
                     Message.error('未知异常！');
                 }
             }
@@ -24,9 +24,9 @@ let Ajax = {
             if(error.response) {
                 if(error.response.status === '404'){
                     Message.error('服务未找到！');
-                }else if(error.response.status === '500'){
+                } else if (error.response.status === '500'){
                     Message.error('服务器异常！');
-                }else{
+                } else {
                     Message.error('未知异常！');
                 }
             }
