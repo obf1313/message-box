@@ -5,7 +5,7 @@
                 Message - Box
             </Row>
             <Row type="flex" justify="end" v-if="ifLogin">
-                <Dropdown trigger="click" style="display: flex; align-items: center; margin-right: 20px; cursor: pointer;">
+                <Dropdown trigger="click" style="display: flex; align-items: center; margin-right: 20px; cursor: pointer">
                     <span style="color: #fff">{{ username }}<i class="el-icon-arrow-down el-icon--right"></i></span>
                     <DropdownMenu slot="dropdown">
                         <DropdownItem @click.native="toAllQuestion">全部问题</DropdownItem>
@@ -26,7 +26,13 @@
 </template>
 
 <script>
-    import { Row, Button, Dropdown, DropdownMenu, DropdownItem } from 'element-ui';
+    import {
+        Row,
+        Button,
+        Dropdown,
+        DropdownMenu,
+        DropdownItem
+    } from 'element-ui';
     export default {
         name: 'Home',
         components: {

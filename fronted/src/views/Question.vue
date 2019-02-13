@@ -26,11 +26,20 @@
 
 <script>
     import Ajax from '../utils/ajax'
-    import { Row, Card, Button } from 'element-ui';
+    import {
+        Row,
+        Card,
+        Button
+    } from 'element-ui';
     import PersonQuestion from '../components/PersonQuestion'
     export default {
         name: "Question",
-        components: { Row, Card, Button, PersonQuestion },
+        components: {
+            Row,
+            Card,
+            Button,
+            PersonQuestion
+        },
         data() {
             return {
                 person: {},

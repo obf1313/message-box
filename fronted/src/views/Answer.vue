@@ -16,11 +16,22 @@
 
 <script>
     import Ajax from '../utils/ajax'
-    import { Row, Card, Button, Input } from 'element-ui';
+    import {
+        Row,
+        Card,
+        Button,
+        Input
+    } from 'element-ui';
     import AnswerQuestion from '../components/AnswerQuestion'
     export default {
         name: "Answer",
-        components: { Row, Card, Button, AnswerQuestion, Input },
+        components: {
+            Row,
+            Card,
+            Button,
+            AnswerQuestion,
+            Input
+        },
         data() {
             return {
                 questionId: '',

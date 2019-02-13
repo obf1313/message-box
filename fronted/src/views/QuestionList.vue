@@ -33,7 +33,12 @@
 
 <script>
     import Ajax from '../utils/ajax'
-    import { Row, Button, Input, Card } from 'element-ui'
+    import {
+        Row,
+        Button,
+        Input,
+        Card
+    } from 'element-ui'
 
     export default {
         name: "QuestionList",

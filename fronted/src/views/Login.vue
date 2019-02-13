@@ -16,7 +16,12 @@
 
 <script>
     import Ajax from '../utils/ajax'
-    import { Button, Row, Input, Message} from 'element-ui'
+    import {
+        Button,
+        Row,
+        Input,
+        Message
+    } from 'element-ui'
     export default {
         name: "Login",
         mounted: ()=>{

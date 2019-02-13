@@ -15,7 +15,11 @@
 </template>
 
 <script>
-    import { Button, Row, Input } from 'element-ui'
+    import {
+        Button,
+        Row,
+        Input
+    } from 'element-ui'
     import Ajax from '../utils/ajax'
     export default {
         name: "Register",
